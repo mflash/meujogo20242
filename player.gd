@@ -1,12 +1,24 @@
 extends CharacterBody2D
 
-@export var speed = 300.0
+@export var speed := 300.0
+@export var jump_speed := -2000.0
+@export var gravity := 4000.0
 
 @onready var sprite = $PlayerSprite
 
 func get_8way_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
 	velocity = input_direction * speed
+	
+func get_side_input():
+	velocity.x = 0
+	var vel := Input.get_axis("left", "right")
+	var jump := Input.is_action_just_pressed("jump")
+
+	if is_on_floor() and jump:		
+		velocity.y = jump_speed
+		get_tree().call_group("HUD", "updateScore")
+	velocity.x = vel * speed
 	
 func animate():
 	if velocity.x > 0:
@@ -20,6 +32,14 @@ func animate():
 	else:
 		sprite.stop()
 		
+func animate_side():
+	if velocity.x > 0:
+		sprite.play("right")
+	elif velocity.x < 0:
+		sprite.play("left")
+	else:
+		sprite.stop()
+		
 func move_8way(delta):
 	get_8way_input()
 	animate()
@@ -27,6 +47,14 @@ func move_8way(delta):
 	if collision_info:
 		velocity = velocity.bounce(collision_info.get_normal())
 		move_and_collide(velocity * delta * 10)
+		
+func move_side(delta):
+	velocity.y += gravity * delta
+	#print(velocity.y)
+	get_side_input()
+	animate_side()
+	move_and_slide()
 
 func _physics_process(delta):
-	move_8way(delta)
+	#move_8way(delta)
+	move_side(delta)

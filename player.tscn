@@ -144,6 +144,7 @@ size = Vector2(20.5, 30.5)
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_58o8v")
+metadata/_edit_group_ = true
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -154,3 +155,5 @@ animation = &"right"
 visible = false
 position = Vector2(1.25, 1.75)
 shape = SubResource("RectangleShape2D_3debd")
+
+[node name="Camera2D" type="Camera2D" parent="."]

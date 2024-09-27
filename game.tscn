@@ -1,18 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://cl4mjd3g4p6p5"]
+[gd_scene load_steps=11 format=3 uid="uid://cl4mjd3g4p6p5"]
 
 [ext_resource type="PackedScene" uid="uid://cs70yf64lqbo8" path="res://player.tscn" id="1_4gv2d"]
+[ext_resource type="Script" path="res://game.gd" id="1_wtgob"]
 [ext_resource type="Texture2D" uid="uid://d323ikk7iot7k" path="res://icon.svg" id="2_jb8m7"]
+[ext_resource type="Texture2D" uid="uid://b1dh8vyttbr0n" path="res://bricks/Stones_Texture.png" id="3_b3waw"]
+[ext_resource type="FontFile" uid="uid://dnpcqg26ipo83" path="res://Xolonium-Regular.ttf" id="5_8xphc"]
+[ext_resource type="Script" path="res://label.gd" id="6_l1bdc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a24i7"]
 size = Vector2(127, 128)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fts8x"]
-size = Vector2(125, 123)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y7ddi"]
+size = Vector2(255, 59)
 
-[node name="Game" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8msks"]
+size = Vector2(122, 59)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t06nm"]
+size = Vector2(255, 59)
+
+[node name="Game" type="Node2D" groups=["HUD"]]
+script = ExtResource("1_wtgob")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(740, 321)
+position = Vector2(970, 21)
 collision_layer = 2
 collision_mask = 2
 metadata/_edit_group_ = true
@@ -25,20 +36,96 @@ visible = false
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_a24i7")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-position = Vector2(232, 93)
-gravity_scale = 0.0
+[node name="Player" parent="." instance=ExtResource("1_4gv2d")]
+position = Vector2(690, 408)
+
+[node name="Camera2D" parent="Player" index="2"]
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.3
+drag_top_margin = 0.3
+drag_right_margin = 0.3
+drag_bottom_margin = 0.3
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(71, 532)
 metadata/_edit_group_ = true
 
-[node name="Icon" type="Sprite2D" parent="RigidBody2D"]
-texture = ExtResource("2_jb8m7")
+[node name="StonesTexture" type="Sprite2D" parent="StaticBody2D2"]
+scale = Vector2(1, 0.234375)
+texture = ExtResource("3_b3waw")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-visible = false
-position = Vector2(-0.5, -0.5)
-shape = SubResource("RectangleShape2D_fts8x")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_y7ddi")
 
-[node name="Player" parent="." instance=ExtResource("1_4gv2d")]
-position = Vector2(567, 325)
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(30, 78)
+metadata/_edit_group_ = true
+
+[node name="StonesTexture" type="Sprite2D" parent="StaticBody2D3"]
+position = Vector2(-2.5, 0)
+scale = Vector2(0.488281, 0.234375)
+texture = ExtResource("3_b3waw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(-3, -0.5)
+shape = SubResource("RectangleShape2D_8msks")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(685, 577)
+metadata/_edit_group_ = true
+
+[node name="StonesTexture" type="Sprite2D" parent="StaticBody2D4"]
+scale = Vector2(1, 0.234375)
+texture = ExtResource("3_b3waw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_t06nm")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+position = Vector2(333, 325)
+metadata/_edit_group_ = true
+
+[node name="StonesTexture" type="Sprite2D" parent="StaticBody2D5"]
+scale = Vector2(1, 0.234375)
+texture = ExtResource("3_b3waw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_y7ddi")
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="."]
+position = Vector2(930, 358)
+metadata/_edit_group_ = true
+
+[node name="StonesTexture" type="Sprite2D" parent="StaticBody2D6"]
+scale = Vector2(1, 0.234375)
+texture = ExtResource("3_b3waw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6"]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_y7ddi")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer" groups=["HUD"]]
+offset_left = 35.0
+offset_top = 24.0
+offset_right = 211.0
+offset_bottom = 73.0
+theme_override_fonts/font = ExtResource("5_8xphc")
+theme_override_font_sizes/font_size = 40
+text = "Score: 0"
+script = ExtResource("6_l1bdc")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
 [editable path="Player"]
