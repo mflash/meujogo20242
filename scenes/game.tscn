@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cl4mjd3g4p6p5"]
+
+[ext_resource type="Script" path="res://scenes/game.gd" id="1_wtgob"]
+[ext_resource type="PackedScene" uid="uid://5k0x2dotccin" path="res://scenes/level1.tscn" id="4_y73ng"]
+[ext_resource type="FontFile" uid="uid://dnpcqg26ipo83" path="res://fonts/Xolonium-Regular.ttf" id="5_8xphc"]
+[ext_resource type="Script" path="res://label.gd" id="6_l1bdc"]
+
+[node name="Game" type="Node2D" groups=["HUD"]]
+script = ExtResource("1_wtgob")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="HUD" groups=["HUD"]]
+offset_left = 35.0
+offset_top = 24.0
+offset_right = 211.0
+offset_bottom = 73.0
+theme_override_fonts/font = ExtResource("5_8xphc")
+theme_override_font_sizes/font_size = 40
+text = "Score: 0"
+script = ExtResource("6_l1bdc")
+
+[node name="Level" parent="." instance=ExtResource("4_y73ng")]
+
+[editable path="Level"]
+[editable path="Level/Player"]

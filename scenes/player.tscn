@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://cs70yf64lqbo8"]
+[gd_scene load_steps=22 format=3 uid="uid://cs70yf64lqbo8"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_58o8v"]
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_58o8v"]
+[ext_resource type="PackedScene" uid="uid://bjxk43nvprd0j" path="res://objects/box.tscn" id="2_o5rwr"]
 [ext_resource type="Texture2D" uid="uid://n75r7siaufcq" path="res://char.png" id="2_q6lxt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1px1d"]
@@ -144,6 +145,7 @@ size = Vector2(20.5, 30.5)
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_58o8v")
+box = ExtResource("2_o5rwr")
 metadata/_edit_group_ = true
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
