@@ -5,9 +5,18 @@ extends CharacterBody2D
 @export var gravity := 4000.0
 @export var box : PackedScene
 
-@onready var sprite = $PlayerSprite
+@onready var sprite := $PlayerSprite
+@onready var jumpSound := $JumpSound
 
-
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("filter"):
+		var filtro := AudioServer.get_bus_effect(1, 0) as AudioEffectLowPassFilter
+		# Liga/desliga o efeito (na verdade, só troca a frequência de corte)
+		if filtro.cutoff_hz == 500:
+			filtro.cutoff_hz = 20500
+		else:
+			filtro.cutoff_hz = 500
+	
 func get_8way_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
 	velocity = input_direction * speed
@@ -17,9 +26,11 @@ func get_side_input():
 	var vel := Input.get_axis("left", "right")
 	var jump := Input.is_action_just_pressed("jump")
 
-	if is_on_floor() and jump:		
+	if jump: #is_on_floor() and jump:		
 		velocity.y = jump_speed
 		get_tree().call_group("HUD", "updateScore")
+		#if not jumpSound.playing:
+		jumpSound.play()
 		# cria uma caixa na posição do jogador
 		var b := box.instantiate()
 		b.position = global_position

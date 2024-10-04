@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://5k0x2dotccin"]
+[gd_scene load_steps=9 format=3 uid="uid://5k0x2dotccin"]
 
 [ext_resource type="Texture2D" uid="uid://b1dh8vyttbr0n" path="res://bricks/Stones_Texture.png" id="1_xfiwm"]
 [ext_resource type="PackedScene" uid="uid://cs70yf64lqbo8" path="res://scenes/player.tscn" id="2_t0mr6"]
 [ext_resource type="Texture2D" uid="uid://d323ikk7iot7k" path="res://icon.svg" id="3_b4u7g"]
+[ext_resource type="AudioStream" uid="uid://8d2abqossqn6" path="res://SFX/Chiptune_Adventures_1.ogg" id="4_np4xl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y7ddi"]
 size = Vector2(255, 59)
@@ -82,7 +83,7 @@ shape = SubResource("RectangleShape2D_y7ddi")
 [node name="Player" parent="." instance=ExtResource("2_t0mr6")]
 position = Vector2(652, 382)
 
-[node name="Camera2D" parent="Player" index="2"]
+[node name="Camera2D" parent="Player" index="3"]
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
@@ -109,5 +110,11 @@ shape = SubResource("RectangleShape2D_a24i7")
 
 [node name="SceneLimit" type="Marker2D" parent="."]
 position = Vector2(427, 603)
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_np4xl")
+autoplay = true
+bus = &"Music"
+parameters/looping = false
 
 [editable path="Player"]

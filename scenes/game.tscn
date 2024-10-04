@@ -22,5 +22,8 @@ script = ExtResource("6_l1bdc")
 
 [node name="Level" parent="." instance=ExtResource("4_y73ng")]
 
+[node name="Player" parent="Level" index="5"]
+jump_speed = -1600.0
+
 [editable path="Level"]
 [editable path="Level/Player"]
