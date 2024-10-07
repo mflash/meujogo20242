@@ -144,9 +144,9 @@ animations = [{
 size = Vector2(20.5, 30.5)
 
 [node name="Player" type="CharacterBody2D"]
-scale = Vector2(2, 2)
 script = ExtResource("1_58o8v")
-jump_speed = -1000.0
+jump_speed = -100.0
+gravity = 600.0
 box = ExtResource("2_o5rwr")
 metadata/_edit_group_ = true
 
@@ -160,7 +160,6 @@ sprite_frames = SubResource("SpriteFrames_3sr56")
 animation = &"right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(1.25, 1.75)
 shape = SubResource("RectangleShape2D_3debd")
 
