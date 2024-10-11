@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var player : CharacterBody2D
 @onready var sceneLimit : Marker2D
+@onready var score : int = 0
 
 var currentScene = null
 
@@ -39,6 +40,15 @@ func goto_scene(path: String):
 	currentScene = res.instantiate()
 	sceneLimit = null	
 	add_child(currentScene)
-	
+
+# Chamada quando for necessário atualizar o score,
+# recebe a qtd a ser incrementada e também
+# atualiza o label
+func increaseScore(amount: int):
+	score += amount
+	$HUD.setScore(score)
+
+# Chamada quando notificada via call_group pela
+# moeda
 func pickCoin():
-	$HUD/ScoreLabel.updateScore()
+	increaseScore(5)
