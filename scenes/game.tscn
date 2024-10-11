@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://dnpcqg26ipo83" path="res://fonts/Xolonium-Regular.ttf" id="5_8xphc"]
 [ext_resource type="Script" path="res://label.gd" id="6_l1bdc"]
 
-[node name="Game" type="Node2D" groups=["HUD"]]
+[node name="Game" type="Node2D" groups=["HUD", "pickup"]]
 script = ExtResource("1_wtgob")
 
 [node name="HUD" type="CanvasLayer" parent="."]

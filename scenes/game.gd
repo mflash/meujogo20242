@@ -39,3 +39,6 @@ func goto_scene(path: String):
 	currentScene = res.instantiate()
 	sceneLimit = null	
 	add_child(currentScene)
+	
+func pickCoin():
+	$HUD/ScoreLabel.updateScore()
