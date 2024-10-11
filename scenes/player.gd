@@ -26,11 +26,11 @@ func get_side_input():
 	var vel := Input.get_axis("left", "right")
 	var jump := Input.is_action_just_pressed("jump")
 
-	if jump: #is_on_floor() and jump:		
+	if is_on_floor() and jump:		
 		velocity.y = jump_speed
 		get_tree().call_group("HUD", "updateScore")
-		#if not jumpSound.playing:
-		jumpSound.play()
+		if not jumpSound.playing:
+			jumpSound.play()
 		# cria uma caixa na posição do jogador
 		var b := box.instantiate()
 		b.position = global_position
