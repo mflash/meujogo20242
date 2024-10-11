@@ -29,8 +29,5 @@ gravity = 2000.0
 [node name="JumpSound" parent="Level/Player" index="0"]
 volume_db = -80.0
 
-[node name="Music" parent="Level" index="2"]
-autoplay = false
-
 [editable path="Level"]
 [editable path="Level/Player"]
